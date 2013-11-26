@@ -11,6 +11,7 @@ class DockingStation
   end
 
   def dock (bike)
+  	raise "station is full" if full?
 	@bikes << bike
   end	
 
@@ -22,7 +23,13 @@ class DockingStation
     bike_count == @capacity
   end
 
+  def working_bikes
+  	@bikes.select {|bike| bike.broken? }
+  end
 
-
+  def available_bikes
+  	@working_bikes = working_bikes
+  end
 end
+
 
